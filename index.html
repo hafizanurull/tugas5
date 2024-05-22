@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faeyza Beautee</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <router-link class="navbar-brand" to="/">Faeyza Beautee</router-link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" v-for="item in navbarItems" :key="item.text">
+              <router-link class="nav-link" :to="item.href">{{ item.text }}</router-link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Router View -->
+      <router-view></router-view>
+
+      <!-- Footer -->
+      <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="text-center p-3">Faeyza Beautee</div>
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Define components
+      const Home = {
+        template: `
+        <div>
+          <!-- Carousel -->
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li v-for="(slide, index) in slides" :data-target="'#carouselExampleIndicators'" :data-slide-to="index" :class="{ active: index === 0 }" :key="index"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item" v-for="(slide, index) in slides" :class="{ active: index === 0 }" :key="slide.id">
+                <img :src="slide.image" class="d-block w-100" :alt="slide.alt">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <!-- Card Section -->
+          <div class="container mt-5">
+            <div class="row">
+              <div class="col-md-4" v-for="product in products" :key="product.id">
+                <div class="card">
+                  <img :src="product.image" class="card-img-top" :alt="product.name">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <a :href="product.link" class="btn btn-primary">Buy</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+        data() {
+          return {
+            slides: [
+              {
+                id: 1,
+                image:
+                  'https://blog.venuelook.com/wp-content/uploads/2022/07/makeup-brands-768x439.jpg',
+                alt: 'Slide 1'
+              },
+              {
+                id: 2,
+                image:
+                  'https://cdn.financebuzz.com/filters:quality(75)/images/2022/06/23/assorted_makeup.jpg',
+                alt: 'Slide 2'
+              }
+            ],
+            products: [
+              {
+                id: 1,
+                name: 'Mascara',
+                description: '$115.00',
+                image:
+                  'https://i5.walmartimages.com/asr/b2efa6b2-8a2b-4f66-9ced-16bfc4673cc8.3841b4860002757967cbdac3797fb49a.jpeg',
+                link: '#'
+              },
+              {
+                id: 2,
+                name: 'Lip',
+                description: '$90.00',
+                image:
+                  'https://i5.walmartimages.com/asr/2c61420a-a841-4496-be27-db72e9bdbd8f.dfc07620276e3bd49176f57390b1f1a3.jpeg',
+                link: '#'
+              },
+              {
+                id: 3,
+                name: 'Cream Blush',
+                description: '$99.00',
+                image:
+                  'https://www.newbeauty.com/wp-content/uploads/2020/11/rareselenagomezblush.jpg',
+                link: '#'
+              },
+              {
+                id: 4,
+                name: 'Eye Shadow',
+                description: '$101.00',
+                image:
+                  'https://th.bing.com/th/id/OIP.0gbi_ErEBgHKu08KyJ0u4QHaHa?rs=1&pid=ImgDetMain',
+                link: '#'
+              },
+              {
+                id: 5,
+                name: 'Powder',
+                description: '$80.00',
+                image:
+                  'https://th.bing.com/th/id/OIP.y_T_CwhwWYEPWjHg7E4V6gHaHa?rs=1&pid=ImgDetMain',
+                link: '#'
+              },
+              {
+                id: 6,
+                name: 'Eyeliner',
+                description: '$101.00',
+                image:
+                  'https://th.bing.com/th/id/OIP.6vXqNfUT81I3iHod0nPRngAAAA?w=350&h=350&rs=1&pid=ImgDetMain',
+                link: '#'
+              }
+            ]
+          }
+        }
+      }
+
+      const About = {}
+
+      // Define routes
+      const routes = [
+        { path: '/', component: Home },
+        { path: '/about', component: About }
+      ]
+
+      // Create the router instance
+      const router = new VueRouter({
+        routes
+      })
+
+      // Create and mount the root instance
+      new Vue({
+        el: '#app',
+        router,
+        data: {
+          navbarItems: [
+            { text: 'Home', href: '/' },
+            { text: 'Product', href: '/' },
+            { text: 'Contact', href: '/' }
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>
